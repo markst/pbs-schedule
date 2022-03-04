@@ -51,6 +51,7 @@ async function join(r) {
                     ]
                 )[0];
                 newProgram["day"] = program["day"];
+                newProgram["duration"] = program["duration"] ?? 7200;
                 return newProgram;
               default:
                 return program;
