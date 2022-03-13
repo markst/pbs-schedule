@@ -26,6 +26,7 @@ async function join(r) {
         response.map(function (program) {
           let update = Object.assign({}, program);
           update["day"] = String(Number(program["day"]) + 7);
+          update["onairnow"] = false;
           return update;
         })
       );
@@ -51,6 +52,7 @@ async function join(r) {
                     ]
                 )[0];
                 newProgram["day"] = program["day"];
+                newProgram["start"] = program["start"];
                 newProgram["duration"] = program["duration"] ?? 7200;
                 return newProgram;
               default:
