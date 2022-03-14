@@ -1,8 +1,8 @@
 {
   "name": "pbs-schedule",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
-    "submit": "gcloud builds submit --tag gcr.io/pbsfm-flutter/pbs-schedule",
-    "deploy": "gcloud run deploy pbs-schedule --allow-unauthenticated --platform managed --image gcr.io/pbsfm-flutter/pbs-schedule"
+    "join": "serverless invoke local --function join",
+    "deploy": "serverless deploy"
   }
 }
