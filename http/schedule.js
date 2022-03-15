@@ -18,17 +18,19 @@ module.exports.hello = async (event) => {
 };
 
 module.exports.proxy = async (event) => {
-  return {
-    statusCode: 200,
-    body: JSON.stringify(
-      {
-        message: "Method: " + event.httpMethod + " URL: " + process.env.URL,
-        input: event,
-      },
-      null,
-      2
-    ),
-  };
+  return subrequest(event.path)
+    .then((response) => {
+      return {
+        statusCode: 200,
+        body: JSON.stringify(response),
+      };
+    })
+    .catch((e) => {
+      return {
+        statusCode: 500,
+        body: e,
+      };
+    });
 };
 
 exports.join = async (event) => {
@@ -81,7 +83,10 @@ exports.join = async (event) => {
       });
     })
     .catch((e) => {
-      500, e;
+      return {
+        statusCode: 500,
+        body: e,
+      };
     });
 };
 

@@ -13,11 +13,13 @@ functions:
     handler: http/schedule.hello
   join:
     handler: http/schedule.join
+    environment:
+      URL: https://airnet.org.au
   proxy:
     handler: http/schedule.proxy
     events:
       - http:
-          path: /
+          path: rest/{proxy+}
           method: any
     environment:
       URL: https://airnet.org.au
