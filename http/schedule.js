@@ -22,6 +22,9 @@ module.exports.proxy = async (event) => {
     .then((response) => {
       return {
         statusCode: 200,
+        headers: {
+          "content-type": "application/json; charset=utf-8",
+        },
         body: JSON.stringify(response),
       };
     })
