@@ -47,7 +47,6 @@ exports.join = async (event) => {
         response.map(function (program) {
           let update = Object.assign({}, program);
           update["day"] = String(Number(program["day"]) + 7);
-          update["onairnow"] = false;
           return update;
         })
       );
@@ -76,8 +75,10 @@ exports.join = async (event) => {
               newProgram["start"] = program["start"];
               newProgram["duration"] =
                 program["duration"] == null ? 7200 : program["duration"];
+              delete newProgram["onairnow"];
               return newProgram;
             default:
+              delete program["onairnow"];
               return program;
           }
         });
