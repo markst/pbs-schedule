@@ -18,7 +18,7 @@ module.exports.hello = async (event) => {
 };
 
 module.exports.proxy = async (event) => {
-  return subrequest(event.path)
+  return subrequest(event.path, event.queryStringParameters)
     .then((response) => {
       return {
         statusCode: 200,
@@ -94,11 +94,12 @@ exports.join = async (event) => {
     });
 };
 
-function subrequest(path) {
+function subrequest(path, parameters = {}) {
+  const query = new URLSearchParams(parameters);
   return new Promise((resolve, reject) => {
     const options = {
       host: "airnet.org.au",
-      path: path,
+      path: `${path}?${query.toString()}`,
       port: 443,
       method: "GET",
     };
