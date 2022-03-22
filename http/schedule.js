@@ -69,12 +69,17 @@ exports.join = async (event) => {
                   prog.slug ==
                   insomnialookup[program.slug][
                     Number(program["day"]) < 7 ? 0 : 1
-                  ]
+                  ].slug
               )[0];
               newProgram["day"] = program["day"];
               newProgram["start"] = program["start"];
               newProgram["duration"] =
                 program["duration"] == null ? 7200 : program["duration"];
+              newProgram["profileImage"] =
+                insomnialookup[program.slug][
+                  Number(program["day"]) < 7 ? 0 : 1
+                ].profileImage;
+
               delete newProgram["onairnow"];
               return newProgram;
             default:
