@@ -15,6 +15,14 @@ functions:
     handler: http/schedule.join
     environment:
       URL: https://airnet.org.au
+  fortnight:
+    handler: http/schedule.join
+    events:
+      - http:
+          path: rest/stations/{station}/guides/fortnight
+          method: any
+    environment:
+      URL: https://airnet.org.au
   proxy:
     handler: http/schedule.proxy
     events:
