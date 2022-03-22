@@ -71,6 +71,9 @@ exports.join = async (event) => {
                     Number(program["day"]) < 7 ? 0 : 1
                   ].slug
               )[0];
+
+              if (newProgram == null) return program;
+
               newProgram["day"] = program["day"];
               newProgram["start"] = program["start"];
               newProgram["duration"] =
