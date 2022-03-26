@@ -87,6 +87,8 @@ exports.join = async (event) => {
               return newProgram;
             default:
               delete program["onairnow"];
+              delete program["bannerImageSmall"];
+              delete program["profileImageSmall"];
               return program;
           }
         });
